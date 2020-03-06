@@ -38,4 +38,40 @@
   //    hex codes from colorbrewer.
 
   // The answer to every question is probably "function(d) { }"
+  d3.selectAll("rect").attr("fill", "red").attr("width", 200)
+
+  //can also write
+  d3.selectAll("rect") //grab all rects
+    .attr("fill", "red")
+    .attr("width", 200)
+  
+  d3.selectAll("circle").attr("r", 30).attr("fill", "blue")
+
+ widthScale = d3.scaleLinear()
+                .domain([0, 15])
+                .range([0, 500])
+
+
+  //can also write
+  d3.selectAll("rect") //grab all rects
+    .data(cities) //attach city data to rects
+    .attr("fill", "red")
+    .attr("width", function(d) {
+      return widthScale(d.population)
+    })
+
+   colorScale = d3.scaleLinear()
+                  .domain([0, 15])
+                  .range(["white", "red"])
+
+
+   d3.selectAll("circle")
+     .data(cities)
+     .attr("r", 30)
+     .attr("fill", function(d) {
+       return(colorScale(d.population))
+     })
+
+
+
 })()
